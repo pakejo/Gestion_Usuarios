@@ -5,13 +5,13 @@ from unipath import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).ancestor(3)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 with open("secret.json") as f:
     secret = json.loads(f.read())
+
 
 def get_secret(secret_name, secrets=secret):
     try:
@@ -34,7 +34,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'GestionUsuarios.applications.users',
+]
 
 THIRD_PARTY_APPS = []
 
@@ -70,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GestionUsuarios.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -89,6 +90,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
